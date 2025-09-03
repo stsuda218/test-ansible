@@ -62,6 +62,12 @@ ansible-galaxy collection install amazon.aws
 ansible-galaxy collection list | grep amazon.aws
 ```
 
+Amazon EC2 インベントリプラグインに必要な boto3 と botocoreをインストールする。
+```
+sudo yum install -y python3-pip
+pip3 install boto3 botocore --user
+```
+
 AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ表示されることを確認する。
 ```
 ansible-inventory -i aws_ec2.yml --graph
