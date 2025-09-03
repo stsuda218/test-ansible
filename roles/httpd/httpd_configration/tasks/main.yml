@@ -1,0 +1,13 @@
+- name: backup check /etc/httpd/conf/httpd.conf
+  stat:
+    path: /etc/httpd.conf.org
+  register: httpd_conf_org
+
+- name: backup /etc/httpd/conf/httpd.conf
+  copy:
+    src: /etc/httpd/conf/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf.org
+    remote_src: yes
+  when: not httpd_conf_org.stat.exists
+
+- meta: flush_handlers
