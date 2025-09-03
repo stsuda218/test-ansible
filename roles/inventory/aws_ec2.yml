@@ -1,0 +1,26 @@
+plugin: aws_ec2
+
+cache: yes
+cache_plugin: jsonfile
+cache_timeout: 600
+cache_connection: $HOME/.ansible/ansible_inventory
+
+# 東京リージョンのEC2のみが対象
+regions:
+  - ap-northeast-1
+
+# 起動しているEC2インスタンスのみを対象とする
+filters:
+  instance-state-name: running
+
+# EC2のGroupタグの値でグルーピング
+# Group: Web ------- httpdサーバ
+# Group: Ansible --- Ansible実行サーバ
+keyed_groups:
+  - key: tags.Group
+    prefix: tag_Name_
+    separator: ""
+
+# EC2のプライベートIPを定義
+hostnames:
+  - private-ip-address
