@@ -1,0 +1,14 @@
+- name: configtest apachectl
+  shell: "apachectl configtest"
+  register: rlt
+  check_mode: no
+  changed_when: false
+  when: not ansible_check_mode
+
+- name: httpd restart
+  systemd:
+    name: httpd
+    state: restart
+    enabled: yes
+  when:
+    not asible_check_mode and "'Syntax OK' in rlt.stderr"

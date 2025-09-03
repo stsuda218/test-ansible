@@ -1,8 +1,0 @@
-- name: Apache Install
-  yum:
-    name: httpd
-    state: present
-
-- name: Apache auto startd                                                                                                systemd:
-    name: httpd
-    enabled: yes
