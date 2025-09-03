@@ -69,6 +69,7 @@ pip3 install boto3 botocore --user
 ```
 
 AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ表示されることを確認する。
+※EC2 IAMロールに AmazonEC2ReadOnlyAccess ポリシーが必要
 ```
 ansible-inventory -i aws_ec2.yml --graph
 ```
