@@ -75,7 +75,7 @@ AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ�
 ansible-inventory -i aws_ec2.yml --graph
 ```
 
-### (5) Ansible Playbook 実行
+## Ansible Playbook 実行
 Ansible Playbook を実行する。
 ```
 ansible-playbook <Playbookファイル> --tags=<Playbookタスクタグ> -CD
