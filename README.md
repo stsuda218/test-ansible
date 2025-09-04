@@ -3,6 +3,7 @@
 
 * httpdインストール
 * httpdコンフィグ設定
+  * /etc/httpd/conf/httpd.conf,/var/www/html/index.html の編集テンプレートあり。
 * httpdリロード
 * httpd再起動
 
