@@ -1,4 +1,4 @@
-- hosts: Ansible
+- hosts: Web
   become: yes
   roles:
     - { role: httpd/httpd_install      , tags: httpd_install }
