@@ -10,4 +10,20 @@
     remote_src: yes
   when: not httpd_conf_org.stat.exists
 
+- name: Template httpd.conf Settings
+  template:
+    src: templates/etc/httpd/conf/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Template index.html Settings
+  template:
+    src: templates/var/www/html/index.html
+    dest: /var/www/html/index.html
+    mode: 0644
+    owner: root
+    group: root
+
 - meta: flush_handlers

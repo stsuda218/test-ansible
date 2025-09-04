@@ -1,0 +1,8 @@
+- hosts: Ansible
+  become: yes
+  roles:
+    - { role: httpd/httpd_install      , tags: httpd_install }
+    - { role: httpd/httpd_configration , tags: httpd_configration }
+    - { role: httpd/httpd_reload       , tags: httpd_reload }
+    - { role: httpd/httpd_restart      , tags: httpd_restart }
+  
