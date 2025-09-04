@@ -8,7 +8,7 @@
 - name: httpd restart
   systemd:
     name: httpd
-    state: restart
+    state: restarted
     enabled: yes
   when:
-    not asible_check_mode and "'Syntax OK' in rlt.stderr"
+    not ansible_check_mode and "'Syntax OK' in rlt.stderr"

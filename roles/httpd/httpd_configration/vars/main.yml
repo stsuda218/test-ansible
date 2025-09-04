@@ -1,2 +1,1 @@
-Listen_port:
-  - port: 8080
+Listen_port: 8080

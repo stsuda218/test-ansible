@@ -18,7 +18,7 @@ filters:
 # Group: Ansible --- Ansible実行サーバ
 keyed_groups:
   - key: tags.Group
-    prefix: tag_Name_
+    prefix: ""
     separator: ""
 
 # EC2のプライベートIPを定義
