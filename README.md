@@ -14,7 +14,7 @@
 * カーネル
   * Linux version 6.1.147-172.266.amzn2023.x86_64 (mockbuild@ip-10-0-55-115) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), GNU ld version 2.41-50.amzn2023.0.3) #1 SMP PREEMPT_DYNAMIC Thu Aug  7 19:30:40 UTC 2025
 
-※[Terraform統合構成：ALB + EC2 + Bastion + Ansible実行サーバ（config-manager）](https://github.com/watanabe-toshi/test-terraform/tree/test-20250730) の
+※[Terraform統合構成：ALB + EC2 + Ansible実行サーバ（config-manager）](https://github.com/watanabe-toshi/terrafom-ansible-action-test) の
 Ansible実行用EC2で動作を想定
 
 ## 実行環境の準備
@@ -59,6 +59,7 @@ EC2タグでAnsible実行対象のクライアントサーバを判別させる�
 Ansible Galaxyから ```amazon.aws``` コレクションをインストールする。
 
 ```
+#インストール実施済みの爲確認のみでOK
 ansible-galaxy collection install amazon.aws
 ansible-galaxy collection list | grep amazon.aws
 ```
