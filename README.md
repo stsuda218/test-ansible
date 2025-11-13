@@ -77,9 +77,18 @@ ansible-inventory -i aws_ec2.yml --graph
 ```
 
 ## Ansible→WebサーバへのSSHへの接続
-Teratermの画面にmy-key.pemをドラッグ&ドロップ
-<img width="884" height="85" alt="image" src="https://github.com/user-attachments/assets/fe249d37-862a-4a4e-852f-6571757c0633" />
-
+Teratermの画面にPEMファイルをドラッグ&ドロップ
+SCPを選択して、送信先は何も入力せず「OK」
+Ansibleサーバ上のホームディレクトリにファイルがおかれたことを確認し、所定のディレクトリに格納・権限を変更する。
+```
+cd
+ls –l
+mv ~/my-key.pem ~/.ssh/id_rsachmod 600 ~/.ssh/id_rsa
+```
+WebサーバへのSSH接続が行えるか確認する
+```
+ssh -i /home/ec2-user/.ssh/id_rsa <プライベートIP>
+```
 
 
 ## Ansible Playbook 実行
