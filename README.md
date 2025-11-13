@@ -26,6 +26,7 @@ Ansibleを実行するEC2内で下記の手順を実施します。
 Webサーバのタグ情報
 AnsibleサーバのPublic IP
 SSH接続する鍵ファイル
+AWSマネジメントコンソールのログインユーザ
 ```
 
 ターミナルクライアントからAnsibleサーバのPublic IP/鍵ファイルを指定してログインして実行ください
@@ -83,7 +84,7 @@ pip3 install boto3 botocore --user
 AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ表示されることを確認する。  
 ※EC2 IAMロールに AmazonEC2ReadOnlyAccess ポリシーが必要
 ```
-ansible-inventory -i aws_ec2.yml --graph
+ansible-inventory -i inventory/aws_ec2.yml --graph
 ```
 
 ## Ansible→WebサーバへのSSHへの接続
