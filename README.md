@@ -28,7 +28,7 @@ AnsibleサーバのPublic IP
 SSH接続する鍵ファイル
 ```
 
-ターミナルクライアントからAnsibleサーバのPublic IPを指定してログイン
+ターミナルクライアントからAnsibleサーバのPublic IP/鍵ファイルを指定してログインして実行ください
 
 ### (1) Ansibleのインストール状態確認
 
