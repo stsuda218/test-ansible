@@ -76,6 +76,11 @@ AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ�
 ansible-inventory -i aws_ec2.yml --graph
 ```
 
+## Ansible→WebサーバへのSSHへの接続
+Teratermの画面にmy-key.pemをドラッグ&ドロップ
+<img width="884" height="85" alt="image" src="https://github.com/user-attachments/assets/fe249d37-862a-4a4e-852f-6571757c0633" />
+
+
 
 ## Ansible Playbook 実行
 Ansible Playbook を実行する。
