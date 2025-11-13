@@ -89,8 +89,11 @@ ansible-inventory -i inventory/aws_ec2.yml --graph
 
 ## Ansible→WebサーバへのSSHへの接続
 Teratermの画面にPEMファイルをドラッグ&ドロップ
+
 SCPを選択して、送信先は何も入力せず「OK」
+
 Ansibleサーバ上のホームディレクトリにファイルがおかれたことを確認
+
 所定のディレクトリに格納・権限を変更する。
 ```
 cd
