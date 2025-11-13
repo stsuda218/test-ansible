@@ -14,11 +14,22 @@
 * カーネル
   * Linux version 6.1.147-172.266.amzn2023.x86_64 (mockbuild@ip-10-0-55-115) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), GNU ld version 2.41-50.amzn2023.0.3) #1 SMP PREEMPT_DYNAMIC Thu Aug  7 19:30:40 UTC 2025
 
-※[Terraform統合構成：ALB + EC2 + Bastion + Ansible実行サーバ（config-manager）](https://github.com/watanabe-toshi/test-terraform/tree/test-20250730) の
+※[Terraform統合構成：ALB + EC2 + Ansible実行サーバ（config-manager）](https://github.com/watanabe-toshi/terrafom-ansible-action-test) の
 Ansible実行用EC2で動作を想定
 
 ## 実行環境の準備
 Ansibleを実行するEC2内で下記の手順を実施します。
+
+以下については当日個別で連携いたします
+```
+ロードバランサーのDNS名
+Webサーバのタグ情報
+AnsibleサーバのPublic IP
+SSH接続する鍵ファイル
+AWSマネジメントコンソールのログインユーザ
+```
+
+ターミナルクライアントからAnsibleサーバのPublic IP/鍵ファイルを指定してログインして実行ください
 
 ### (1) Ansibleのインストール状態確認
 
@@ -59,6 +70,7 @@ EC2タグでAnsible実行対象のクライアントサーバを判別させる�
 Ansible Galaxyから ```amazon.aws``` コレクションをインストールする。
 
 ```
+#インストール実施済みの爲確認のみでOK
 ansible-galaxy collection install amazon.aws
 ansible-galaxy collection list | grep amazon.aws
 ```
@@ -72,17 +84,28 @@ pip3 install boto3 botocore --user
 AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ表示されることを確認する。  
 ※EC2 IAMロールに AmazonEC2ReadOnlyAccess ポリシーが必要
 ```
-ansible-inventory -i aws_ec2.yml --graph
+ansible-inventory -i inventory/aws_ec2.yml --graph
 ```
 
-test-ansibleリポジトリ内の以下のファイルを編集内容に従い修正する。
+## Ansible→WebサーバへのSSHへの接続
+Teratermの画面にPEMファイルをドラッグ&ドロップ
+
+SCPを選択して、送信先は何も入力せず「OK」
+
+Ansibleサーバ上のホームディレクトリにファイルがおかれたことを確認
+
+所定のディレクトリに格納・権限を変更する。
 ```
-vi Group_Web_Server.yml
+cd
+ls –l
+mv ~/my-key.pem ~/.ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa
 ```
 
-編集内容：
-赤枠内の値をEC2タグ group と同じ値にする。
-<img width="557" height="166" alt="image" src="https://github.com/user-attachments/assets/209ad599-8d07-43fe-b6d6-ca7342438826" />
+WebサーバへのSSH接続が行えるか確認する
+```
+ssh -i /home/ec2-user/.ssh/id_rsa <webサーバのプライベートIP>
+```
 
 
 ## Ansible Playbook 実行
@@ -97,17 +120,17 @@ ansible-playbook <Playbookファイル> --tags=<Playbookタスクタグ> -CD
 
 コマンド例①： Webサーバに対してhttpdをインストールするチェックを行う
 ```
-ansible-playbook Group_Web_Server.yml --tags=httpd_install -CD
+ansible-playbook Group_Web_Server.yml --tags=httpd_install -CD　–l <Ownerタグの値>
 ```
 
 コマンド例②： Webサーバに対してhttpdのリロードを行う
 ```
-ansible-playbook Group_Web_Server.yml --tags=httpd_reload -D
+ansible-playbook Group_Web_Server.yml --tags=httpd_reload -D　–l <Ownerタグの値>
 ```
 
 下記のコマンドでPlaybookファイルがどのタスクを実行するよう定義されているかが確認できる。
 ```
-ansible-playbook --list-tasks Group_Web_Server.yml
+ansible-playbook --list-tasks Group_Web_Server.yml　–l <Ownerタグの値>
 ```
 
 
