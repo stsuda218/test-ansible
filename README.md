@@ -76,15 +76,6 @@ AnsibleインベントリにEC2タグで判別されたサーバがそれぞれ�
 ansible-inventory -i aws_ec2.yml --graph
 ```
 
-test-ansibleリポジトリ内の以下のファイルを編集内容に従い修正する。
-```
-vi Group_Web_Server.yml
-```
-
-編集内容：
-赤枠内の値をEC2タグ group と同じ値にする。
-<img width="557" height="166" alt="image" src="https://github.com/user-attachments/assets/209ad599-8d07-43fe-b6d6-ca7342438826" />
-
 
 ## Ansible Playbook 実行
 Ansible Playbook を実行する。
