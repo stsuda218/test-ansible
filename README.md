@@ -83,11 +83,13 @@ Ansibleサーバ上のホームディレクトリにファイルがおかれた�
 ```
 cd
 ls –l
-mv ~/my-key.pem ~/.ssh/id_rsachmod 600 ~/.ssh/id_rsa
+mv ~/my-key.pem ~/.ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa
 ```
+
 WebサーバへのSSH接続が行えるか確認する
 ```
-ssh -i /home/ec2-user/.ssh/id_rsa <プライベートIP>
+ssh -i /home/ec2-user/.ssh/id_rsa <webサーバのプライベートIP>
 ```
 
 
