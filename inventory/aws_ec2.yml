@@ -16,11 +16,16 @@ filters:
 # EC2のGroupタグの値でグルーピング
 # Group: Web ------- httpdサーバ
 # Group: Ansible --- Ansible実行サーバ
+# Owner タグでも分類 (例: hoge / fuga)
 keyed_groups:
   - key: tags.Group
+    prefix: ""
+    separator: ""
+  - key: tags.Owner
     prefix: ""
     separator: ""
 
 # EC2のプライベートIPを定義
 hostnames:
   - private-ip-address
+
