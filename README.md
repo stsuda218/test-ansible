@@ -116,17 +116,17 @@ ansible-playbook <Playbookファイル> --tags=<Playbookタスクタグ> -CD
 
 コマンド例①： Webサーバに対してhttpdをインストールするチェックを行う
 ```
-ansible-playbook Group_Web_Server.yml --tags=httpd_install -CD
+ansible-playbook Group_Web_Server.yml --tags=httpd_install -CD　–l <Ownerタグの値>
 ```
 
 コマンド例②： Webサーバに対してhttpdのリロードを行う
 ```
-ansible-playbook Group_Web_Server.yml --tags=httpd_reload -D
+ansible-playbook Group_Web_Server.yml --tags=httpd_reload -D　–l <Ownerタグの値>
 ```
 
 下記のコマンドでPlaybookファイルがどのタスクを実行するよう定義されているかが確認できる。
 ```
-ansible-playbook --list-tasks Group_Web_Server.yml
+ansible-playbook --list-tasks Group_Web_Server.yml　–l <Ownerタグの値>
 ```
 
 
